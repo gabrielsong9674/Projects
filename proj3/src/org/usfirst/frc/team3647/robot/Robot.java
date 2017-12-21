@@ -44,7 +44,7 @@ public class Robot extends IterativeRobot {
 		autoSelected = chooser.getSelected();
 		// autoSelected = SmartDashboard.getString("Auto Selector",
 		// defaultAuto);
-		System.out.println("Auto selected: " + autoSelected);
+		System.out.println("Tele selected: " + autoSelected);
 	}
 
 	/**
