@@ -50,27 +50,7 @@ public class Robot extends IterativeRobot {
 
 	// This is the function that is called during the Tele-operated period
 	// This function runs periodically, meaning it acts as an infinite loop
-
-	public void teleopPeriodic() {
-		leftJoystickValueY = Joysticks.leftJoySticky;
-		leftJoystickValueX = Joysticks.rightJoyStickx;
-		leftEncoderValue = encoderObject.getLeftEncoder();
-		rightEncoderValue = encoderObject.getRightEncoder();
-		leftSpeed = leftJoystickValueY;
-		rightSpeed = leftJoystickValueY;
-		if(leftJoystickValueX != 0) {
-			Motors.leftMotor.set(leftSpeed);
-			Motors.rightMotor.set(rightSpeed);
-		}
-		else if(leftJoystickValueY != 0) {
-			PID();
-		}
-		else {
-			Motors.leftMotor.set(0);
-			Motors.rightMotor.set(0);
-		}
-	}
-		public void PID(){
+	public void PID(){
 		if (Math.abs(rightEncoderValue - leftEncoderValue) < 5) {
 			Motors.leftMotor.set(leftSpeed);
 			Motors.rightMotor.set(-rightSpeed);
@@ -98,6 +78,26 @@ public class Robot extends IterativeRobot {
 		}
 		}
 	
+		
+	public void teleopPeriodic() {
+		leftJoystickValueY = Joysticks.leftJoySticky;
+		leftJoystickValueX = Joysticks.rightJoyStickx;
+		leftEncoderValue = encoderObject.getLeftEncoder();
+		rightEncoderValue = encoderObject.getRightEncoder();
+		leftSpeed = leftJoystickValueY;
+		rightSpeed = leftJoystickValueY;
+		if(leftJoystickValueX != 0) {
+			Motors.leftMotor.set(leftSpeed);
+			Motors.rightMotor.set(rightSpeed);
+		}
+		else if(leftJoystickValueY != 0) {
+			PID();
+		}
+		else {
+			Motors.leftMotor.set(0);
+			Motors.rightMotor.set(0);
+		}
+	}
 		
 
 	// This is the function that is called during the test
