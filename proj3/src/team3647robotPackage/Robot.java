@@ -17,7 +17,7 @@ public class Robot extends IterativeRobot {
 
 	double leftJoystickValueY;
 	double rightJoystickValueY;
-	double leftJoystickValueX;
+	double rightJoystickValueX;
 	double rightJoystickX;
 	double leftEncoderValue;
 	double rightEncoderValue;
@@ -72,14 +72,15 @@ public class Robot extends IterativeRobot {
 	
 		
 	public void teleopPeriodic() {
+		joystickObject.updateMainController();
 		leftJoystickValueY = Joysticks.leftJoySticky;
-		leftJoystickValueX = Joysticks.rightJoyStickx;
+		rightJoystickValueX = Joysticks.rightJoyStickx;
 		leftEncoderValue = encoderObject.getLeftEncoder();
 		rightEncoderValue = encoderObject.getRightEncoder();
 		
 		leftSpeed = leftJoystickValueY;
 		rightSpeed = leftJoystickValueY;
-		if(leftJoystickValueX != 0) {
+		if(rightJoystickValueX != 0) {
 			Motors.leftMotor.set(leftSpeed);
 			Motors.rightMotor.set(rightSpeed);
 		}
@@ -89,7 +90,7 @@ public class Robot extends IterativeRobot {
 		else {
 			Motors.leftMotor.set(0);
 			Motors.rightMotor.set(0);
-			resetEncoders();
+			encoderObject.resetEncoders();
 		}
 	}
 		
