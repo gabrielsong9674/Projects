@@ -28,9 +28,10 @@ public class Robot extends IterativeRobot {
 	// initialization of code
 
 	Encoders encoderObject;
-
+	Joysticks joystickObject;
 	public void robotInit() {
 		encoderObject = new Encoders();
+		joystickObject = new Joysticks();
 	}
 
 	// This function runs once, right before autonomous period starts.
@@ -52,7 +53,7 @@ public class Robot extends IterativeRobot {
 	// This function runs periodically, meaning it acts as an infinite loop
 	public void PID(){
 		if (Math.abs(rightEncoderValue - leftEncoderValue) < 5) {
-			//nothing
+			
 		} else {
 			if (rightEncoderValue > leftEncoderValue && leftJoystickValueY <.15) {
 				rightSpeed -= adjustment;
@@ -75,6 +76,7 @@ public class Robot extends IterativeRobot {
 		leftJoystickValueX = Joysticks.rightJoyStickx;
 		leftEncoderValue = encoderObject.getLeftEncoder();
 		rightEncoderValue = encoderObject.getRightEncoder();
+		
 		leftSpeed = leftJoystickValueY;
 		rightSpeed = leftJoystickValueY;
 		if(leftJoystickValueX != 0) {
