@@ -58,7 +58,7 @@ public class Robot extends IterativeRobot {
 				Motors.leftMotor.set(leftSpeed);
 				Motors.rightMotor.set(rightSpeed);
 			}
-			else if(rightJoystickValueY > .15) {
+			else if(leftJoystickValueY > .15) {
 				Motors.leftMotor.set(leftSpeed);
 				Motors.rightMotor.set(rightSpeed);
 			}
