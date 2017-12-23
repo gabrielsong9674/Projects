@@ -53,9 +53,12 @@ public class Robot extends IterativeRobot {
 	// This function runs periodically, meaning it acts as an infinite loop
 	public void PID(){
 			if (leftJoystickValueY > 0) {
-				if(leftEncoderValue/2 + rightEncoderValue/2 < 5){
+				if(leftEncoderValue-rightEncoderValue < 5){
+					leftSpeed = leftJoystickValueY;
+					rightSpeed = leftJoystickValueY;
 					Motors.leftMotor.set(leftSpeed);
 					Motors.rightMotor.set(-rightSpeed);
+					
 				}
 				else if(leftEncoderValue > rightEncoderValue) {
 					rightSpeed = rightSpeed -=adjustment;
@@ -70,21 +73,23 @@ public class Robot extends IterativeRobot {
 					Motors.rightMotor.set(-rightSpeed);
 				}
 			else if(leftJoystickValueY < 0) {
-				if((leftEncoderValue/2 + rightEncoderValue/2) <5) {
+				if((leftEncoderValue - rightEncoderValue) <5) {
+					leftSpeed = leftJoystickValueY;
+					rightSpeed = leftJoystickValueY;
 					Motors.leftMotor.set(leftSpeed);
-					Motors.rightMotor.set(rightSpeed);
+					Motors.rightMotor.set(-rightSpeed);
 				}
 				else if(leftEncoderValue>rightEncoderValue) {
 					rightSpeed = rightSpeed -=adjustment;
 					leftSpeed = leftSpeed += adjustment;
-					Motors.leftMotor.set(-leftSpeed);
-					Motors.rightMotor.set(rightSpeed);
+					Motors.leftMotor.set(leftSpeed);
+					Motors.rightMotor.set(-rightSpeed);
 					}
 					else if(rightEncoderValue > leftEncoderValue) {
 						rightSpeed = rightSpeed +=adjustment;
 						leftSpeed = leftSpeed -=adjustment;
-						Motors.leftMotor.set(-leftSpeed);
-						Motors.rightMotor.set(rightSpeed);
+						Motors.leftMotor.set(leftSpeed);
+						Motors.rightMotor.set(-rightSpeed);
 					}
 				}
 			else {
